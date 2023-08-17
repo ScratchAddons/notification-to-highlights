@@ -1,10 +1,7 @@
 ---
-import LanguagePicker from "../components/LanguagePicker.astro";
-const versions = Object.keys(
-	import.meta.glob("../pages/*/index.astro", { as: "raw" })
-).map(k => {
-	return k.split('/')[2]
-});
+import LanguagePickerIndex from "../components/LanguagePickerIndex.astro";
+import VersionPickerIndex from "../components/VersionPickerIndex.astro";
+
 
 let { version, locales } = Astro.props
 ---
@@ -28,12 +25,8 @@ let { version, locales } = Astro.props
 					<a class="p-2 border rounded hover:bg-slate-100" href="./">Version: { version }</a>
 				</li>
 			</ul>
-			<ul class="flex list-none flex-wrap mb-2">
-				{ versions.map(version => <li class="flex list-none">
-					<a class="p-2 border rounded me-2 hover:bg-slate-100" href={ '../' + version + '/' } >{ version }</a>
-				</li>) }
-			</ul>
-			<LanguagePicker locales={ locales } />
+			<VersionPickerIndex />
+			<LanguagePickerIndex locales={ locales } />
 		</header>
 		<main class="container mx-auto">
 		</main>

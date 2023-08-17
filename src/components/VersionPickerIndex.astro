@@ -1,0 +1,13 @@
+---
+const versions = Object.keys(
+	import.meta.glob("../pages/*/index.astro", { as: "raw" })
+).map(k => {
+	return k.split('/')[2]
+}).filter(a => a);
+---
+
+<ul class="flex list-none flex-wrap mb-2">
+	{ versions.map(version => <li class="flex list-none">
+		<a class="p-2 border rounded me-2 hover:bg-slate-100" href={ '../' + version + '/' } >{ version }</a>
+	</li>) }
+</ul>

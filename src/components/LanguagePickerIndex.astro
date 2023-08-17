@@ -4,6 +4,6 @@ const { locales } = Astro.props
 
 <ul class="flex list-none flex-wrap mb-4 gap-2">
 	{ Object.keys(locales).map(code => <li class="flex list-none">
-		<a class="p-2 border rounded hover:bg-slate-100" href={ '../' + code + '/' } >{ code }</a>
+		<a class="p-2 border rounded hover:bg-slate-100" href={ code + '/' } >{ code }</a>
 	</li>) }
 </ul>
