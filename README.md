@@ -1,7 +1,7 @@
 # `notification-to-highlights`
 
-[![Deployment status (Site Deployment workflow status)](https://img.shields.io/github/actions/workflow/status/ScratchAddons/notification-to-highlights/deploy.yml?label=deploy&style=flat-square)](https://github.com/ScratchAddons/website-v2/actions/workflows/deploy.yml)
-<!-- [![Website: scratchaddons.com](https://img.shields.io/badge/website-scratchaddons.com-ff7b26.svg?style=flat-square)](https://scratchaddons.com) -->
+[![Deployment status (Site Deployment workflow status)](https://img.shields.io/github/actions/workflow/status/ScratchAddons/notification-to-highlights/deploy.yml?label=deploy&style=flat-square)](https://github.com/ScratchAddons/website-v2/actions/workflows/deploy.yml) 
+[![Website: scratchaddons.github.io/notification-to-highlights](https://img.shields.io/badge/website-/notification--to--highlights-ff7b26.svg?style=flat-square)](https://scratchaddons.github.io/notification-to-highlights/) 
 [![License](https://img.shields.io/github/license/ScratchAddons/website-v2?style=flat-square)](https://github.com/ScratchAddons/notification-to-highlights/blob/master/LICENSE)
 
 This tool assists translators on copying "Scratch Addons extension update" notification to the website as a version highlights.
