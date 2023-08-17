@@ -1,0 +1,15 @@
+---
+const { lang } = Astro.props
+const versions = Object.keys(
+	import.meta.glob("../pages/*/_locales/*/messages.json", { as: "raw" })
+).map(k => {
+	if (k.split('/')[4] !== lang) return
+	return k.split('/')[2]
+}).filter(a => a);
+---
+
+<ul class="flex list-none flex-wrap mb-2 gap-2">
+	{ versions.map(version => <li class="flex list-none">
+		<a class="p-2 border rounded hover:bg-slate-100" href={ '../' + version + '/' + lang } >{ version }</a>
+	</li>) }
+</ul>

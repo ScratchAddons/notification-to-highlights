@@ -1,0 +1,49 @@
+---
+import LanguagePicker from "../components/LanguagePicker.astro";
+import VersionPicker from "../components/VersionPicker.astro";
+
+let { version, locales, lang } = Astro.props
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{ version }: { lang }</title>
+	</head>
+	<body class="p-2">
+
+		<header class="container mx-auto">
+			<ul class="flex list-none flex-wrap mb-2 gap-2">
+				<li class="flex list-none">
+					<a class="p-2 border rounded hover:bg-slate-100" href="../">← Back to Home</a>
+				</li>
+				<li class="flex list-none">
+					<a class="p-2 border rounded hover:bg-slate-100" href="./">Version: { version }</a>
+				</li>
+				<li class="flex list-none">
+					<a class="p-2 border rounded hover:bg-slate-100" href="#">Language: { lang }</a>
+				</li>
+			</ul>
+			<VersionPicker lang={ lang } />
+			<LanguagePicker locales={ locales } />
+		</header>
+		<main class="container mx-auto">
+
+			<div class="flex flex-col xl:flex-row gap-2 justify-evenly">
+				<div id="original" class="flex justify-center items-center">
+					{ locales["en"] }
+				</div>
+				<div id="translated" class="flex justify-center items-center">
+					{ locales[lang] }
+				</div>
+			</div>
+	
+			<slot />
+
+		</main>
+
+	</body>
+</html>

@@ -1,4 +1,9 @@
 ---
+const versions = Object.keys(
+	import.meta.glob("./*/index.astro", { as: "raw" })
+).map(k => {
+	return k.split('/')[1]
+});
 ---
 
 <html lang="en">
@@ -7,9 +12,20 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Home</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="p-2">
+
+		<header class="container mx-auto">
+			<ul class="flex list-none flex-wrap mb-2">
+				{ versions.map(version => <li class="flex list-none">
+					<a class="p-2 border rounded me-2 mb-2 hover:bg-slate-100" href={ version + '/' } >{ version }</a>
+				</li>) }
+			</ul>
+		</header>
+		<main class="container mx-auto">
+			<p>You are on the <code>notification-to-highlights</code> tool. Please see <a href="https://github.com/ScratchAddons/notification-to-highlights" class="text-blue-500 hover:text-blue-800">the repository</a> for instructions.</p>
+		</main>
+
 	</body>
 </html>

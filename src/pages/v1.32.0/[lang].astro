@@ -1,0 +1,55 @@
+---
+import Display from '../../layouts/Display.astro'
+const locales: any = {};
+
+await Object.entries(
+	import.meta.glob("./_locales/*/messages.json", { as: "raw" })
+).forEach(async ([k, v]) => {
+	const languageCode = k.split("/")[2];
+	locales[languageCode] = v();
+});
+
+// console.log(await Astro.glob('./_locales/*/messages.json'))
+
+export async function getStaticPaths() {
+	return Object.keys(
+		import.meta.glob("./_locales/*/messages.json", { as: "raw" })
+	).map(k => {
+		return {
+			params: {
+				lang: k.split("/")[2]
+			}
+		}
+	})
+	// Object.keys(await Astro.glob('_locales/*/messages.json')).map(el => el.replace())
+	// return Object.entries(locales).map((k, v) => {
+	// 	return {
+	// 		params: { lang: k },
+	// 	}
+	// })
+}
+
+const { lang } = Astro.params;
+---
+
+<Display version="v1.32.0" locales={ locales } lang={ lang }>
+
+	<script>
+		import { generateChromeObject } from '../../components/shared.js'
+		import { showBanner } from './notifBanner.js'
+
+		const originalEl = document.querySelector("#original")!;
+		const translatedEl = document.querySelector("#translated")!;
+
+		const original = showBanner(generateChromeObject(originalEl.textContent));
+		const translated = showBanner(generateChromeObject(translatedEl.textContent));
+
+		originalEl.innerHTML = "";
+		originalEl.appendChild(original);
+
+		translatedEl.innerHTML = "";
+		translatedEl.appendChild(translated);
+	</script>
+
+</Display>
+
