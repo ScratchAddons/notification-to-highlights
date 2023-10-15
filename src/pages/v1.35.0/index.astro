@@ -1,0 +1,18 @@
+---
+import DisplayIndex from '../../layouts/DisplayIndex.astro'
+const locales: any = {};
+
+await Object.entries(
+	import.meta.glob("./_locales/*/messages.json", { as: "raw" })
+).forEach(async ([k, v]) => {
+	const languageCode = k.split("/")[2];
+	locales[languageCode] = v();
+});
+
+const { lang } = Astro.params;
+---
+
+<DisplayIndex version="v1.35.0" locales={ locales } lang={ lang }>
+
+</DisplayIndex>
+

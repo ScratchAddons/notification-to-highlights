@@ -23,7 +23,7 @@ This tool assists translators on copying "Scratch Addons extension update" notif
 4. Inside `src/pages`, copy one of the version that is already made.
 5. Replace the `_locales` folder that is already present with the `_locales` folder from main repository.
 7. Replace all the version numbers (e.g. `v1.33.2`) to the correct version (e.g. `v1.0.0`).
-8. Copy the `showBanner` function from `content-scripts/cs.js`.
+8. Copy the `showBanner` function from `content-scripts/cs.js` and put it inside the `notifBanner.js`.
 9. Replace `export const showBanner = () => {` with `export const showBanner = chrome => {`.
 10. Replace `style: {...}` inside the `notifInnerBody` (see the first 10 lines of `notifBanner.js`) with `style: notifStyle`.
 11. Replace `document.body.appendChild(notifOuterBody)` with `return notifInnerBody`.
