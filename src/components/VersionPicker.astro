@@ -1,11 +1,13 @@
 ---
+import semver from 'semver'
+
 const { lang } = Astro.props
 const versions = Object.keys(
 	import.meta.glob("../pages/*/_locales/*/messages.json", { query: "?raw", import: "default" })
 ).map(k => {
 	if (k.split('/')[4] !== lang) return
 	return k.split('/')[2]
-}).filter(a => a);
+}).filter(a => a).sort(semver.compare)
 ---
 
 <ul class="flex list-none flex-wrap mb-2 gap-2">

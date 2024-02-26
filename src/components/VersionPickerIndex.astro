@@ -1,9 +1,11 @@
 ---
+import semver from 'semver'
+
 const versions = Object.keys(
 	import.meta.glob("../pages/*/index.astro", { query: "?raw", import: "default" })
 ).map(k => {
 	return k.split('/')[2]
-}).filter(a => a);
+}).filter(a => a).sort(semver.compare)
 ---
 
 <ul class="flex list-none flex-wrap mb-2 gap-2">
