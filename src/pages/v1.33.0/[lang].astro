@@ -3,7 +3,7 @@ import Display from '../../layouts/Display.astro'
 const locales: any = {};
 
 await Object.entries(
-	import.meta.glob("./_locales/*/messages.json", { as: "raw" })
+	import.meta.glob("./_locales/*/messages.json", { query: "?raw", import: "default" })
 ).forEach(async ([k, v]) => {
 	const languageCode = k.split("/")[2];
 	locales[languageCode] = v();
@@ -13,7 +13,7 @@ await Object.entries(
 
 export async function getStaticPaths() {
 	return Object.keys(
-		import.meta.glob("./_locales/*/messages.json", { as: "raw" })
+		import.meta.glob("./_locales/*/messages.json", { query: "?raw", import: "default" })
 	).map(k => {
 		return {
 			params: {

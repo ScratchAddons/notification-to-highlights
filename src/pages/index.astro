@@ -1,6 +1,6 @@
 ---
 const versions = Object.keys(
-	import.meta.glob("./*/index.astro", { as: "raw" })
+	import.meta.glob("./*/index.astro", { query: "?raw", import: "default" })
 ).map(k => {
 	return k.split('/')[1]
 });
