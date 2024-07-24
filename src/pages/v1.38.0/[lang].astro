@@ -1,0 +1,47 @@
+---
+import Display from '../../layouts/Display.astro'
+const locales: any = {};
+
+await Object.entries(
+	import.meta.glob("./_locales/*/messages.json", { query: "?raw", import: "default" })
+).forEach(async ([k, v]) => {
+	const languageCode = k.split("/")[2];
+	locales[languageCode] = v();
+});
+
+export async function getStaticPaths() {
+	return Object.keys(
+		import.meta.glob("./_locales/*/messages.json", { query: "?raw", import: "default" })
+	).map(k => {
+		return {
+			params: {
+				lang: k.split("/")[2]
+			}
+		}
+	})
+}
+
+const { lang } = Astro.params;
+---
+
+<Display version="v1.38.0" locales={ locales } lang={ lang }>
+
+	<script>
+		import { generateChromeObject } from '../../components/shared.js'
+		import { showBanner } from './notifBanner.js'
+
+		const originalEl = document.querySelector("#original")!;
+		const translatedEl = document.querySelector("#translated")!;
+
+		const original = showBanner(generateChromeObject(originalEl.textContent));
+		const translated = showBanner(generateChromeObject(translatedEl.textContent));
+
+		originalEl.innerHTML = "";
+		originalEl.appendChild(original);
+
+		translatedEl.innerHTML = "";
+		translatedEl.appendChild(translated);
+	</script>
+
+</Display>
+
